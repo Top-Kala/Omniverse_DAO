@@ -15,6 +15,10 @@ import { useWeb3React } from '@web3-react/core'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { BigNumber, ethers } from 'ethers'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+
 const injected = new InjectedConnector({
   supportedChainIds: [4, 97, 43113, 80001, 421611, 4002, 69]
 })
@@ -91,6 +95,7 @@ export default function Greg() {
   const [transferNFT, setTransferNFT] = useState()
   const [totalNFTCount, setTotalNFTCount] = useState(0)
   const [nextTokenId, setNextTokenId] = useState(0)
+  const [ownTokenisLoading, setOwnTokenisLoading] = useState(true)
 
   const { library } = useActiveWeb3React()
 
@@ -178,13 +183,21 @@ export default function Greg() {
         window.alert("Sale is not started yet.")
       }
     } catch (e) {
-      console.log(e)
+      toast.error(e["data"]["message"].split(":")[1]+e["data"]["message"].split(":")[2],{
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 3000,
+        transition: Slide
+      });
     }
   }
 
   const sendNFT = async () => {
     if(!transferNFT){
-      window.alert("Select NFT you want to transfer, please.")
+      toast.error("Select NFT you want to transfer, please",{
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 3000,
+        transition: Slide
+      });
       return;
     }
     try {
@@ -195,15 +208,19 @@ export default function Greg() {
       const currentBalance = await library.getBalance(account);
 
       if(Number(estimateFee) > Number(currentBalance)) {
-        window.alert("You don't have enough balance for transfer.");
+        toast.error("You don't have enough balance for transfer",{
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 3000,
+          transition: Slide
+        });
         return;
       }
       try{
-        await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: BigNumber.from(estimateFee)})
+        await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: BigNumber.from(estimateFee)});
+        getInfo();
       } catch(error){
         console.log(error);
       }
-      getInfo();
     } catch (e) {
       console.log(e)
     }
@@ -227,11 +244,13 @@ export default function Greg() {
 
       setTotalNFTCount(Number(max_mint));
       setNextTokenId(Number(nextId));
+      setOwnTokenisLoading(false)
     }
   }
 
   const switchNetwork = async () => {
     const provider = window.ethereum;
+    setOwnTokenisLoading(true)
     try {
       await provider.request({
         method: 'wallet_switchEthereumChain',
@@ -245,6 +264,7 @@ export default function Greg() {
 
     } catch (addError) {
        console.log(addError);
+       setOwnTokenisLoading(false)
     }
   }
 
@@ -266,6 +286,7 @@ export default function Greg() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <MainNav setNetId={setNetId} netId={netId} addresses={addresses} />
+      <ToastContainer />
 
       <div className='pt-[200px] mb-[50px]'>
         <div className='rounded-[25px] bg-black w-5/6 max-w-[1200px] min-w-[320px] lg:px-[30px] px-0 mx-auto flex lg:flex-row flex-col'>
@@ -307,6 +328,11 @@ export default function Greg() {
           <p className='text-[25px] leading-[30px] font-bold m-0 text-center'>Your NFTs</p>
           <div className='w-full gap-[20px] flex flex-col h-[600px] overflow-y-auto scroll-style'>
             {
+            ownTokenisLoading? 
+              <div className="ring">Loading
+                <span></span>
+              </div>
+              :
               ownToken.map(item => (
                 <div className='w-full my-[20px] flex items-center justify-between' onClick={() => setTransferNFT(item)} key={item}>
                   <div className='flex items-center'>
