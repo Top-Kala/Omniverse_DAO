@@ -13,7 +13,7 @@ import { getContract } from '../utils/contracts'
 
 import { useWeb3React } from '@web3-react/core'
 import { InjectedConnector } from '@web3-react/injected-connector'
-import { ethers } from 'ethers'
+import { BigNumber, ethers } from 'ethers'
 
 const injected = new InjectedConnector({
   supportedChainIds: [4, 97, 43113, 80001, 421611, 4002, 69]
@@ -198,9 +198,11 @@ export default function Greg() {
         window.alert("You don't have enough balance for transfer.");
         return;
       }
-
-      let result = await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: Number(estimateFee)})
-
+      try{
+        await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: BigNumber.from(estimateFee)})
+      } catch(error){
+        console.log(error);
+      }
       getInfo();
     } catch (e) {
       console.log(e)
