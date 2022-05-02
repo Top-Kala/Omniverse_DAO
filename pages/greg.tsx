@@ -173,21 +173,34 @@ export default function Greg() {
 
       if(saleFlag && publicmintFlag) {
         mintResult = await tokenContract.publicMint(mintNum, {value: ethers.utils.parseEther((addresses[selectedChainID].price*mintNum).toString())})
-
+        // add the the function to get the emit from the contract and call the getInfo()
         getInfo();
       } else if (saleFlag) {
         mintResult = await tokenContract.mint(mintNum, {value: ethers.utils.parseEther((addresses[selectedChainID].price*mintNum).toString())})
-
+        // add the the function to get the emit from the contract and call the getInfo()
         getInfo();
       } else {
-        window.alert("Sale is not started yet.")
+        toast.error("Sale is not started yet",{
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 3000,
+          transition: Slide
+        });
       }
     } catch (e) {
-      toast.error(e["data"]["message"].split(":")[1]+e["data"]["message"].split(":")[2],{
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 3000,
-        transition: Slide
-      });
+      if(e["code"] == 4001){
+        toast.error(e["message"].split(":")[1],{
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 3000,
+          transition: Slide
+        });
+      } else {
+        toast.error(e["data"]["message"].split(":")[1]+e["data"]["message"].split(":")[2],{
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 3000,
+          transition: Slide
+        });
+      }
+
     }
   }
 
@@ -215,19 +228,32 @@ export default function Greg() {
         });
         return;
       }
-      try{
-        await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: BigNumber.from(estimateFee)});
-        getInfo();
-      } catch(error){
-        console.log(error);
-      }
+     
+      await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: BigNumber.from(estimateFee)});
+      // please add the function to get the emit from the contract and call the getInfo()
+      getInfo();
+      
     } catch (e) {
-      console.log(e)
+      if(e["code"] == 4001){
+        toast.error(e["message"].split(":")[1],{
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 3000,
+          transition: Slide
+        });
+      } else {
+        // change the error message after confrim it
+        toast.error(e,{
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 3000,
+          transition: Slide
+        });
+      }
     }
   }
 
   const getInfo = async () => {
     if(addresses[chainId]) {
+      setOwnTokenisLoading(true)
       const tokenContract = getContract(addresses[chainId].address, AdvancedONT, library, account)
 
       let result = await tokenContract.balanceOf(account);
@@ -250,7 +276,6 @@ export default function Greg() {
 
   const switchNetwork = async () => {
     const provider = window.ethereum;
-    setOwnTokenisLoading(true)
     try {
       await provider.request({
         method: 'wallet_switchEthereumChain',
@@ -264,7 +289,6 @@ export default function Greg() {
 
     } catch (addError) {
        console.log(addError);
-       setOwnTokenisLoading(false)
     }
   }
 
