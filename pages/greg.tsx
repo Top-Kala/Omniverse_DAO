@@ -18,7 +18,7 @@ import { ethers } from 'ethers'
 const injected = new InjectedConnector({
   supportedChainIds: [4, 97, 43113, 80001, 421611, 4002, 69]
 })
-// 10001, 10002, 10006, 10009, 10010, 10011, 10012
+
 const addresses = {
   '4': {
     address: '0xe5B227D2b91225f37D742C44F1708FB8886Dc816',
@@ -78,7 +78,7 @@ const addresses = {
   }
 }
 
-export default function Greg({networkId}) {
+export default function Greg() {
   const { connector, chainId, activate, deactivate, error, account, active } = useWeb3React()
 
   const router = useRouter()
@@ -87,6 +87,10 @@ export default function Greg({networkId}) {
   const [selectedNFT, setSelectedNFT] = useState(addresses['4'])
   const [selectedChainID, setSelectedChainID] = useState(addresses['4'])
   const [netId, setNetId] = useState('4')
+  const [ownToken, setOwnToken] = useState([])
+  const [transferNFT, setTransferNFT] = useState()
+  const [totalNFTCount, setTotalNFTCount] = useState(0)
+  const [nextTokenId, setNextTokenId] = useState(0)
 
   const { library } = useActiveWeb3React()
 
@@ -148,21 +152,30 @@ export default function Greg({networkId}) {
     if(flag.length > 0) {
       setSelectedNFT(addresses[temp])
     }
+    setNetId(chainId);
+    getInfo();
   }, [chainId])
 
   const mint = async () => {
     if(!checkConnect()) return
     const tokenContract = getContract(addresses[selectedChainID].address, AdvancedONT, library, account)
 
-    let mintResult
+    let mintResult;
 
     try {
-      // if(chainId == '4') {
-      //   mintResult = await tokenContract.mint(mintNum, {value: ethers.utils.parseEther((addresses[selectedChainID].price*mintNum).toString())})
-      // }
+      let publicmintFlag = await tokenContract._publicSaleStarted();
+      let saleFlag = await tokenContract._saleStarted();
 
-      if(chainId == '43113' || chainId == '97') {
+      if(saleFlag && publicmintFlag) {
         mintResult = await tokenContract.publicMint(mintNum, {value: ethers.utils.parseEther((addresses[selectedChainID].price*mintNum).toString())})
+
+        getInfo();
+      } else if (saleFlag) {
+        mintResult = await tokenContract.mint(mintNum, {value: ethers.utils.parseEther((addresses[selectedChainID].price*mintNum).toString())})
+
+        getInfo();
+      } else {
+        window.alert("Sale is not started yet.")
       }
     } catch (e) {
       console.log(e)
@@ -170,14 +183,66 @@ export default function Greg({networkId}) {
   }
 
   const sendNFT = async () => {
-    let result
+    if(!transferNFT){
+      window.alert("Select NFT you want to transfer, please.")
+      return;
+    }
     try {
       if(!checkConnect()) return
       const tokenContract = getContract(addresses[selectedChainID].address, AdvancedONT, library, account)
-      // let result = await tokenContract.sendNFT(chainId, 3)
-      let result = await tokenContract.sendNFT(addresses[toChain].chainId, 1501, {value: ethers.utils.parseEther((addresses[toChain].price).toString())})
+
+      const estimateFee = await tokenContract.estimateFeesSendNFT(addresses[toChain].chainId, transferNFT)
+      const currentBalance = await library.getBalance(account);
+
+      if(Number(estimateFee) > Number(currentBalance)) {
+        window.alert("You don't have enough balance for transfer.");
+        return;
+      }
+
+      let result = await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: Number(estimateFee)})
+
+      getInfo();
     } catch (e) {
       console.log(e)
+    }
+  }
+
+  const getInfo = async () => {
+    if(addresses[chainId]) {
+      const tokenContract = getContract(addresses[chainId].address, AdvancedONT, library, account)
+
+      let result = await tokenContract.balanceOf(account);
+      let token, tokenlist = [];
+      for (var i = 0; i < Number(result); i++) {
+        token = await tokenContract.tokenOfOwnerByIndex(account, i);
+        tokenlist.push(Number(token));
+      }
+
+      setOwnToken(tokenlist);
+
+      let max_mint = await tokenContract.MAX_MINT();
+      let nextId = await tokenContract.nextTokenId();
+
+      setTotalNFTCount(Number(max_mint));
+      setNextTokenId(Number(nextId));
+    }
+  }
+
+  const switchNetwork = async () => {
+    const provider = window.ethereum;
+    try {
+      await provider.request({
+        method: 'wallet_switchEthereumChain',
+        params: [
+          {
+            chainId: `0x${Number(netId).toString(16)}`,
+          }
+        ]      
+      });
+      setTransferNFT();
+
+    } catch (addError) {
+       console.log(addError);
     }
   }
 
@@ -186,6 +251,10 @@ export default function Greg({networkId}) {
       connect()
     }
   }, [])
+
+  useEffect(() => {
+    switchNetwork()
+  }, [netId])
 
   return (
     <div className='w-full main raleway'>
@@ -207,7 +276,7 @@ export default function Greg({networkId}) {
             <p className='text-[15px] leading-[25px]'>greg is our genesis collection that represents our community and technological breakthroughs</p>
             <p className='text-[15px] leading-[25px]'>mint greg below from any chain you wish and transfer him to any other chain using the “Transfer” box below</p>
             <p className='text-[15px] leading-[25px]'>5 mints per wallet, and once you mint your greg will replace the default greg to the left</p>
-            <p className='text-[25px] leading-[25px] mt-[40px] font-bold'>0/4444 Minted</p>
+            <p className='text-[25px] leading-[25px] mt-[40px] font-bold'>{nextTokenId}/{totalNFTCount} Minted</p>
             <div className='mt-[20px] flex gap-[5px]'>
               <p className='lg:text-[25px] text-[12px] leading-[25px] font-bold'>{selectedNFT.price + ' ' + selectedNFT.unit}</p>
               <img src={selectedNFT.image} className='h-[40px]' />
@@ -224,7 +293,7 @@ export default function Greg({networkId}) {
                 </button>
               </div>
               <button className='bg-[#E84142] px-[30px] py-[8px] rounded-[5px]' onClick={mint}>
-                Mint from Avalanche
+                Mint
               </button>
             </div>
           </div>
@@ -233,46 +302,48 @@ export default function Greg({networkId}) {
 
       <div className='flex lg:flex-row flex-col w-5/6 max-w-[1200px] min-w-[320px] mx-auto gap-[50px] xl:pb-[220px] pb-[100px]'>
         <div className='rounded-[25px] lg:w-3/4 w-full bg-black p-[30px]'>
-          <p className='text-[25px] leading-[30px] font-bold m-0'>Your gregs</p>
-          <div className='w-full gap-[20px] flex md:flex-row flex-col'>
-            <div className='md:w-1/4 w-full my-[20px] flex flex-col items-center'>
-              <img src='../static/nft.svg' />
-              <p className='font-medium text-[25px] leading-[30px] text-center'>greg #1234</p>
-            </div>
-            <div className='md:w-1/4 w-full my-[20px] flex flex-col items-center'>
-              <img src='../static/nft.svg' />
-              <p className='font-medium text-[25px] leading-[30px] text-center'>greg #4120</p>
-            </div>
-            <div className='md:w-1/4 w-full my-[20px] flex flex-col items-center'>
-              <img src='../static/nft.svg' />
-              <p className='font-medium text-[25px] leading-[30px] text-center'>greg #0001</p>
-            </div>
-            <div className='md:w-1/4 w-full my-[20px] flex flex-col items-center'>
-              <img src='../static/nft.svg' />
-              <p className='font-medium text-[25px] leading-[30px] text-center'>greg #3123</p>
-            </div>
-          </div>
-          <div className='w-full gap-[20px] flex md:flex-row flex-col'>
-            <div className='md:w-1/4 w-full my-[20px] flex flex-col items-center'>
-              <img src='../static/nft.svg' />
-              <p className='font-medium text-[25px] leading-[30px] text-center'>greg #1234</p>
-            </div>
-            <div className='md:w-1/4 w-full my-[20px] flex flex-col items-center'>
-              <img src='../static/nft.svg' />
-              <p className='font-medium text-[25px] leading-[30px] text-center'>greg #4120</p>
-            </div>
-            <div className='md:w-1/4 w-full my-[20px] flex flex-col items-center'>
-              <img src='../static/nft.svg' />
-              <p className='font-medium text-[25px] leading-[30px] text-center'>greg #0001</p>
-            </div>
-            <div className='md:w-1/4 w-full my-[20px] flex flex-col items-center'>
-              <img src='../static/nft.svg' />
-              <p className='font-medium text-[25px] leading-[30px] text-center'>greg #3123</p>
-            </div>
+          <p className='text-[25px] leading-[30px] font-bold m-0 text-center'>Your NFTs</p>
+          <div className='w-full gap-[20px] flex flex-col h-[600px] overflow-y-auto scroll-style'>
+            {
+              ownToken.map(item => (
+                <div className='w-full my-[20px] flex items-center justify-between' onClick={() => setTransferNFT(item)} key={item}>
+                  <div className='flex items-center'>
+                    <img src='../static/nft.svg' className='w-[100px]' />
+                    <p className='font-medium text-[25px] leading-[30px] text-center'>greg #{item}</p>
+                  </div>
+                  {
+                    transferNFT == item ?
+                      <div className='w-[28px] h-[28px] relative flex items-center justify-center'>
+                        <img src='../static/check.svg' className='absolute' />
+                        <img src='../static/checked.svg' />
+                      </div>
+                    :
+                      <div className='w-[28px] h-[28px] relative'>
+                        <img src='../static/unchecked.svg' />
+                      </div>
+                  }
+                </div>
+              ))
+            }
           </div>
         </div>
         <div className='rounded-[25px] lg:w-1/4 w-full bg-black p-[30px] h-[400px] relative'>
           <p className='text-[25px] leading-[30px] font-bold m-0 text-center'>Transfer</p>
+          {/* transfer item */}
+          {transferNFT? <div className="flex items-center justify-between mb-4 mt-4">
+            <div className="flex items-center">
+              <img className='rounded-full w-[63px] h-[50px] md:h-[50px] md:w-[63px]' src="../static/nft.svg" alt="" />
+              <div className='md:ml-2 ml-4'>
+                <small className='text-[12px]'>Omniverse Greg</small>
+                <span className='block '>greg #{transferNFT}</span>
+              </div>
+            </div>
+            <div className="block mr-5">
+              <img src='../static/transfer-icon.png' alt="icon" />
+            </div>
+          </div> : null}
+          
+
           <p className='text-[15px] leading-[18px] m-0 text-center mt-[20px]'>Select Destination</p>
           <div className="relative mt-[20px]">
             <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-[10px] leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" value={toChain} onChange={(e) => setToChain(e.target.value)}>
