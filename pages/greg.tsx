@@ -139,7 +139,11 @@ export default function Greg() {
     })
 
     if(flag.length == 0) {
-      window.alert('Please select correct Network!')
+      toast.error("Please select correct Network!",{
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 3000,
+        transition: Slide
+      });
       return false
     }
     return true
@@ -256,7 +260,7 @@ export default function Greg() {
         });
       } else {
         // change the error message after confrim it
-        toast.error(e,{
+        toast.error("Sending NFT error, Please try again",{
           position: toast.POSITION.BOTTOM_RIGHT,
           autoClose: 3000,
           transition: Slide
@@ -302,7 +306,11 @@ export default function Greg() {
       setTransferNFT();
 
     } catch (addError) {
-       console.log(addError);
+      toast.error("Switching network error, please try again",{
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 3000,
+        transition: Slide
+      });
     }
   }
 
