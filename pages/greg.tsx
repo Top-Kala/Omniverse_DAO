@@ -82,6 +82,7 @@ const addresses = {
   }
 }
 
+
 export default function Greg() {
   const { connector, chainId, activate, deactivate, error, account, active } = useWeb3React()
 
@@ -161,9 +162,11 @@ export default function Greg() {
     getInfo();
   }, [chainId])
 
+
+
   const mint = async () => {
     if(!checkConnect()) return
-    const tokenContract = getContract(addresses[selectedChainID].address, AdvancedONT, library, account)
+    const tokenContract = getContract(addresses[selectedChainID].address, AdvancedONT.abi, library, account)
 
     let mintResult;
 
@@ -172,13 +175,20 @@ export default function Greg() {
       let saleFlag = await tokenContract._saleStarted();
 
       if(saleFlag && publicmintFlag) {
+
         mintResult = await tokenContract.publicMint(mintNum, {value: ethers.utils.parseEther((addresses[selectedChainID].price*mintNum).toString())})
+        const receipt = await mintResult.wait();
+        if(receipt!=null){
+          getInfo();
+        }
         // add the the function to get the emit from the contract and call the getInfo()
-        getInfo();
       } else if (saleFlag) {
         mintResult = await tokenContract.mint(mintNum, {value: ethers.utils.parseEther((addresses[selectedChainID].price*mintNum).toString())})
         // add the the function to get the emit from the contract and call the getInfo()
-        getInfo();
+        const receipt = await mintResult.wait();
+        if(receipt!=null){
+          getInfo();
+        }
       } else {
         toast.error("Sale is not started yet",{
           position: toast.POSITION.BOTTOM_RIGHT,
@@ -194,7 +204,8 @@ export default function Greg() {
           transition: Slide
         });
       } else {
-        toast.error(e["data"]["message"].split(":")[1]+e["data"]["message"].split(":")[2],{
+
+        toast.error("Mint Error",{
           position: toast.POSITION.BOTTOM_RIGHT,
           autoClose: 3000,
           transition: Slide
@@ -215,7 +226,7 @@ export default function Greg() {
     }
     try {
       if(!checkConnect()) return
-      const tokenContract = getContract(addresses[selectedChainID].address, AdvancedONT, library, account)
+      const tokenContract = getContract(addresses[selectedChainID].address, AdvancedONT.abi, library, account)
 
       const estimateFee = await tokenContract.estimateFeesSendNFT(addresses[toChain].chainId, transferNFT)
       const currentBalance = await library.getBalance(account);
@@ -229,9 +240,12 @@ export default function Greg() {
         return;
       }
      
-      await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: BigNumber.from(estimateFee)});
+      let mintResult = await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: BigNumber.from(estimateFee)});
       // please add the function to get the emit from the contract and call the getInfo()
-      getInfo();
+      const receipt = await mintResult.wait();
+      if(receipt!=null){
+        getInfo();
+      }
       
     } catch (e) {
       if(e["code"] == 4001){
@@ -254,7 +268,7 @@ export default function Greg() {
   const getInfo = async () => {
     if(addresses[chainId]) {
       setOwnTokenisLoading(true)
-      const tokenContract = getContract(addresses[chainId].address, AdvancedONT, library, account)
+      const tokenContract = getContract(addresses[chainId].address, AdvancedONT.abi, library, account)
 
       let result = await tokenContract.balanceOf(account);
       let token, tokenlist = [];
@@ -340,7 +354,9 @@ export default function Greg() {
                 </button>
               </div>
               <button className='bg-[#E84142] px-[30px] py-[8px] rounded-[5px]' onClick={mint}>
-                Mint
+                <span>
+                  <i className="fa fa-spinner fa-spin"></i> Mint
+                </span>
               </button>
             </div>
           </div>
