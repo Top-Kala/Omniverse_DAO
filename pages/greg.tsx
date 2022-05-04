@@ -238,7 +238,7 @@ export default function Greg() {
       const estimateFee = await tokenContract.estimateFeesSendNFT(addresses[toChain].chainId, transferNFT)
       const currentBalance = await library.getBalance(account);
 
-      if(Number(estimateFee) > Number(currentBalance)) {
+      if(Number(estimateFee) * 1.1 > Number(currentBalance)) {
         toast.error("You don't have enough balance for transfer",{
           position: toast.POSITION.BOTTOM_RIGHT,
           autoClose: 3000,
@@ -247,7 +247,7 @@ export default function Greg() {
         return;
       }
      
-      let mintResult = await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: BigNumber.from(estimateFee)});
+      let mintResult = await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: BigNumber.from(estimateFee) * 1.1});
       // please add the function to get the emit from the contract and call the getInfo()
       const receipt = await mintResult.wait();
       if(receipt!=null){
@@ -461,7 +461,7 @@ export default function Greg() {
         if(transferNFT){
           const tokenContract = getContract(addresses[selectedChainID].address, AdvancedONT.abi, library, account)
           const fee = await tokenContract.estimateFeesSendNFT(addresses[toChain].chainId, transferNFT)
-          setEstimateFee((BigNumber.from(fee)/(BigNumber.from(10).pow(18))).toFixed(10)+addresses[selectedChainID].unit)
+          setEstimateFee((BigNumber.from(fee)/(BigNumber.from(10).pow(18))*1.1).toFixed(10)+addresses[selectedChainID].unit)
         } else {
           setEstimateFee("")
         }
