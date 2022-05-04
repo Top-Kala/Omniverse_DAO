@@ -329,7 +329,7 @@ export default function Greg() {
     if(chainId == "4"){
       return(
         <>
-          <button className='bg-[#8C8C8C] w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
+          <button className='bg-[#8C8C8C] hover:opacity-80 w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
             Mint
           </button>
         </>
@@ -337,7 +337,7 @@ export default function Greg() {
     } else if(chainId == "97"){
       return(
         <>
-          <button className='bg-[#F3BA2F] w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
+          <button className='bg-[#F3BA2F] hover:opacity-80 w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
             Mint
           </button>
         </>
@@ -345,7 +345,7 @@ export default function Greg() {
     } else if(chainId == "43113"){
       return(
         <>
-          <button className='bg-[#E84142] w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
+          <button className='bg-[#E84142] hover:opacity-80 w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
             Mint
           </button>
         </>
@@ -353,7 +353,7 @@ export default function Greg() {
     } else if(chainId == "80001"){
       return(
         <>
-          <button className='bg-[#8247E5] w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
+          <button className='bg-[#8247E5] hover:opacity-80 w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
             Mint
           </button>
         </>
@@ -361,7 +361,7 @@ export default function Greg() {
     } else if(chainId == "421611"){
       return(
         <>
-          <button className='bg-[#28A0F0] w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
+          <button className='bg-[#28A0F0] hover:opacity-80 w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
             Mint
           </button>
         </>
@@ -369,7 +369,7 @@ export default function Greg() {
     } else if(chainId == "4002"){
       return(
         <>
-          <button className='bg-[#13B5EC] w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
+          <button className='bg-[#13B5EC] hover:opacity-80 w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
             Mint
           </button>
         </>
@@ -377,7 +377,7 @@ export default function Greg() {
     } else if(chainId == "69"){
       return(
         <>
-          <button className='bg-[#FF0320] w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
+          <button className='bg-[#FF0320] hover:opacity-80 w-[230px] h-[43px] px-[30px] py-[8px] rounded-[6px]' onClick={mint}>
             Mint
           </button>
         </>
@@ -389,7 +389,7 @@ export default function Greg() {
     if(toChain == "4"){
       return(
         <>
-          <button className='bg-[#8C8C8C] px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
+          <button className='bg-[#8C8C8C] hover:opacity-80 px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
               <span className='font-bold'>Transfer</span>
           </button>
         </>
@@ -397,7 +397,7 @@ export default function Greg() {
     } else if(toChain == "97"){
       return(
         <>
-          <button className='bg-[#F3BA2F] px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
+          <button className='bg-[#F3BA2F] hover:opacity-80 px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
               <span className='font-bold'>Transfer</span>
           </button>
         </>
@@ -405,7 +405,7 @@ export default function Greg() {
     } else if(toChain == "43113"){
       return(
         <>
-          <button className='bg-[#E84142] px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
+          <button className='bg-[#E84142] hover:opacity-80 px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
               <span className='font-bold'>Transfer</span>
           </button>
         </>
@@ -413,7 +413,7 @@ export default function Greg() {
     } else if(toChain == "80001"){
       return(
         <>
-          <button className='bg-[#8247E5] px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
+          <button className='bg-[#8247E5] hover:opacity-80 px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
               <span className='font-bold'>Transfer</span>
           </button>
         </>
@@ -421,7 +421,7 @@ export default function Greg() {
     } else if(toChain == "421611"){
       return(
         <>
-          <button className='bg-[#28A0F0] px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
+          <button className='bg-[#28A0F0] hover:opacity-80 px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
               <span className='font-bold'>Transfer</span>
           </button>
         </>
@@ -429,7 +429,7 @@ export default function Greg() {
     } else if(toChain == "4002"){
       return(
         <>
-          <button className='bg-[#13B5EC] px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
+          <button className='bg-[#13B5EC] hover:opacity-80 px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
               <span className='font-bold'>Transfer</span>
           </button>
         </>
@@ -437,7 +437,7 @@ export default function Greg() {
     } else if(toChain == "69"){
       return(
         <>
-          <button className='bg-[#FF0320] px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
+          <button className='bg-[#FF0320] hover:opacity-80 px-[30px] py-[15px] rounded-[16px] text-center' onClick={sendNFT}>
               <span className='font-bold'>Transfer</span>
           </button>
         </>
