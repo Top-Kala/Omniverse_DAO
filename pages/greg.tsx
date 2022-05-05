@@ -246,8 +246,9 @@ export default function Greg() {
         });
         return;
       }
-     
-      let mintResult = await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: BigNumber.from(estimateFee) * 1.1});
+      let gasFee = BigNumber.from(estimateFee)/Math.pow(10,18)*1.1*Math.pow(10,18)
+      gasFee = gasFee - gasFee%1
+      let mintResult = await tokenContract.sendNFT(addresses[toChain].chainId, transferNFT, {value: gasFee.toString()});
       // please add the function to get the emit from the contract and call the getInfo()
       const receipt = await mintResult.wait();
       if(receipt!=null){
@@ -262,6 +263,7 @@ export default function Greg() {
           transition: Slide
         });
       } else {
+        console.log(e)
         // change the error message after confrim it
         toast.error("Sending NFT error, Please try again",{
           position: toast.POSITION.BOTTOM_RIGHT,
