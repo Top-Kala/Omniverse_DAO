@@ -60,7 +60,7 @@ const addresses = {
     unit: 'MATIC'
   },
   '421611': {
-    address: '0xe8fbd12300e32c882ac7e99234355ad1b22c5807c5ac742c1b23cdd4fa0ec21a',
+    address: '0x900501b343e8975b0ec4f1439f355f0bf15c7b9f',
     image: '../static/logo/dbanner1_copy_2_1.svg',
     name: 'Arbitrum',
     price: 0.05,
@@ -222,6 +222,8 @@ export default function Greg() {
     }
     try {
       if(!checkConnect()) return
+      console.log(addresses[selectedChainID].name)
+        console.log(addresses[toChain].name)
       const tokenContract = getContract(addresses[selectedChainID].address, AdvancedONT.abi, library, account)
 
       const estimateFee = await tokenContract.estimateFeesSendNFT(addresses[toChain].chainId, transferNFT)
@@ -242,15 +244,20 @@ export default function Greg() {
         setIsTransferring(false)
       }
       // After deploy the contract, please uncomment this
-
-      // tokenContract.on("ReceiveFromChain",(_srcChainId, _fromAddress, toAddr, tokenId, _nonce) => {
-      //   toast.success(`${ _fromAddress } sent greg#${ tokenId } to ${ _srcChainId}`,{
-      //     position: toast.POSITION.TOP_RIGHT,
-      //     autoClose: 3000,
-      //     transition: Slide
-      //   });
-      //   setIsTransferring(false)
-      // })
+      console.log("aaaaa")
+      const destination_contract = getContract(addresses[toChain].address, AdvancedONT.abi, library, account)
+      destination_contract.on("Transfer",(from , to , tokenID) => {
+        console.log(to,account)
+        if(to==account){
+          console.log(to,account)
+          toast.success(`${ addresses[selectedChainID].name } sent greg#${ tokenID } to ${ addresses[toChain].name}`,{
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 3000,
+            transition: Slide
+          });
+          setIsTransferring(false)
+        }
+      })
 
       
     } catch (e) {
