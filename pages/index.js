@@ -34,16 +34,8 @@ export default function Home() {
             <p className='text-[36px] font-medium m-0 leading-[42px] text-center lg:text-center'>The Omniverse is an ecosystem of truly interoperable media and protocols developed with <Link href="https://layerzero.network/"><a className='underline'>Layer Zero</a></Link>technology</p>
           </div>
         </div>
-        <div class="grid grid-cols-3 gap-4">
-          <div class="...">01</div>
-          <div class="...">02</div>
-          <div class="...">03</div>
-          <div class="col-span-2 ...">04</div>
-          <div class="...">05</div>
-          <div class="...">06</div>
-          <div class="col-span-2 ...">07</div>
-        </div>
-        <div className='w-1/9 lg:w-1/12 border-2 h-0 '></div>
+        {/* add this part after fixing  */}
+        {/* <div className='w-1/9 lg:w-1/12 border-2 h-0 '></div> */}
         <div data-aos="fade-left" className='flex flex-col lg:flex-row w-full lg:w-4/6 m-auto pb-20'>
           <div className='w-full lg:px-6 px-4 lg:py-10 py-0 raleway'>
             <p className='text-[24px]  font-medium m-0 leading-[28px] text-center lg:text-center'>We seek to develop products that push the bleeding edge of NFT technology on a multitude of blockchains where every product has a superior emphasis on user experience</p>
