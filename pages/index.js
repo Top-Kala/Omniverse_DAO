@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import MainNav from '../components/MainNav'
 import Footer from '../components/Footer'
+import Link from 'next/link'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
@@ -29,23 +30,25 @@ export default function Home() {
       </div>
       <div className='w-full items-center flex-col pt-[150px]' id='overview'>
         <div data-aos="fade-right" className='flex flex-col lg:flex-row w-full lg:w-4/6 m-auto pb-20'>
-          <div className='lg:w-2/6 w-full px-10 py-5'>
-            <p className='m-0 text-[50px] leading-[80px] text-center lg:text-right'>OVERVIEW</p>
-          </div>
-          <div className='lg:w-3/5 w-full lg:px-6 px-4 lg:py-10 py-0 raleway'>
-            <p className='text-[20px] m-0 leading-[23px] text-justify lg:text-left'>The Omniverse is an ecosystem of media, tools, and protocols unified by their development and interoperability via Layer Zero technology.</p>
-            <br/>
-            <p className='text-[20px] m-0 leading-[23px] text-justify lg:text-left'>Built by the Omniverse DAO with an emphasis on superior user experience.</p>
+          <div className='w-full lg:px-6 px-4 lg:py-10 py-0 raleway'>
+            <p className='text-[36px] font-medium m-0 leading-[42px] text-center lg:text-center'>The Omniverse is an ecosystem of truly interoperable media and protocols developed with <Link href="https://layerzero.network/"><a className='underline'>Layer Zero</a></Link>technology</p>
           </div>
         </div>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="...">01</div>
+          <div class="...">02</div>
+          <div class="...">03</div>
+          <div class="col-span-2 ...">04</div>
+          <div class="...">05</div>
+          <div class="...">06</div>
+          <div class="col-span-2 ...">07</div>
+        </div>
+        <div className='w-1/9 lg:w-1/12 border-2 h-0 '></div>
         <div data-aos="fade-left" className='flex flex-col lg:flex-row w-full lg:w-4/6 m-auto pb-20'>
-          <div className='lg:w-2/6 w-full px-10 py-5'>
-            <p className='m-0 text-[50px] leading-[80px] text-center lg:text-right'>VISION</p>
-          </div>
-          <div className='lg:w-3/5 w-full lg:px-6 px-4 lg:py-10 py-0 raleway'>
-            <p className='text-[20px] m-0 leading-[23px] text-justify lg:text-left'>Creating a revolutionary game on groundbreaking interoperable blockchain technology will lead to us to developing a host of follow on products. There are no tools for this era of DAO run communities operating on multiple blockchains.</p>
-            <br/>
-            <p className='text-[20px] m-0 leading-[23px] text-justify lg:text-left'>With Omni X, we seek to change this. The first gaming DAO tool we are building is a multi-chain NFT marketplace framework. The Omni Wars game marketplace will be built on this framework, but we seek to open up this development to any other blockchain game looking to quickly bootstrap their own unique game specific NFT marketplace.</p>
+          <div className='w-full lg:px-6 px-4 lg:py-10 py-0 raleway'>
+            <p className='text-[24px]  font-medium m-0 leading-[28px] text-center lg:text-center'>We seek to develop products that push the bleeding edge of NFT technology on a multitude of blockchains where every product has a superior emphasis on user experience</p>
+            <br/><br/><br/>
+            <p className='text-[24px]  font-medium m-0 leading-[28px] text-center lg:text-center'>From a groundbreaking natively interoperable NFT marketplace to a multi-blockchain domination style strategy game - we are building genuinely usefuland exciting products for everyone</p>
           </div>
         </div>
       </div>
@@ -54,28 +57,28 @@ export default function Home() {
           <div className='lg:w-2/6 w-full px-10 py-5 flex flex-col lg:items-end items-center'>
             <div className='w-[200px]'>
               <img src='../static/logo/omniverse-logo.svg' />
-              <p className='m-0 mt-8 text-[30px] leading-[35px] text-center'>OmniX</p>
+              <p className='m-0 mt-8 text-[30px] leading-[38px] text-center font-normal'>Omni-X</p>
             </div>
           </div>
-          <div className='lg:w-4/6 w-full lg:px-6 px-4 lg:py-16 py-0 raleway'>
-            <p className='text-[20px] m-0 leading-[23px] text-justify lg:text-left'>A protocol providing tools for creating omnichain NFT tokens and marketplaces.</p>
+          <div className='lg:w-4/6 w-full font-medium lg:px-6 px-4 lg:py-16 py-0 raleway'>
+            <p className='text-[24px]  m-0 leading-[25px] text-justify lg:text-left'>An omnichain NFT marketplace, empowering creators and collectors to explore new frontier of omnichain liquidity and asset transfer</p>
  
             <br/>
-            <p className='text-[20px] m-0 leading-[23px] text-justify lg:text-left'>Leveraging the power of sourcing both financial and social capital from multiple chains.</p>
+            <p className='text-[24px] m-0 leading-[25px] text-justify lg:text-left'>Learn more about our innovative features here</p>
           </div>
         </div>
         <div data-aos="fade-left" className='flex flex-col lg:flex-row w-full lg:w-4/6 m-auto pb-20'>
           <div className='lg:w-2/6 w-full px-10 py-5 flex flex-col lg:items-end items-center'>
             <div className='w-[200px]'>
               <img src='../static/logo/omniwar-logo.svg' />
-              <p className='m-0 mt-8 text-[30px] leading-[35px] text-center'>OmniWars</p>
+              <p className='m-0 mt-8 text-[30px] leading-[38px] text-center font-normal'>OmniWars</p>
             </div>
           </div>
 
-          <div className='lg:w-4/6 w-full lg:px-6 px-4 lg:py-16 py-0 raleway'>
-            <p className='text-[20px] m-0 leading-[23px] text-justify lg:text-left'>An omnichain compete-to-earn (C2E) strategy game developed by Omniverse DAO and built on the LayerZero protocol. </p>
+          <div className='lg:w-4/6 font-medium w-full lg:px-6 px-4 lg:py-16 py-0 raleway'>
+            <p className='text-[24px] m-0 leading-[25px] text-justify lg:text-left'>A compete-to-earn (C2E) strategy game where blockchain factions battle in a multi-chain universe </p>
             <br/>
-            <p className='text-[20px] m-0 leading-[23px] text-justify lg:text-left'>The C2E model puts maximum emphasis on the team work and strategic development rather than endless grind and randomized rewards.</p>
+            <p className='text-[24px] m-0 leading-[25px] text-justify lg:text-left'>Our C2E model puts maximum emphasis on the team work and strategic development rather than endless grind and randomized rewards.</p>
           </div>
         </div>
       </div>
@@ -84,7 +87,7 @@ export default function Home() {
       </div>
       <div className='xl:flex hidden flex-col items-center xl:pb-[220px] pb-[100px] uppercase'>
         <p data-aos="fade-down" className='lg:text-[50px] text-[25px] lg:leading-[120px] leading-[60px] m-0 text-white color text-center'>ROADMAP</p>
-        <div className='lg:mt-[105px] mt-[20px] w-9/12 mx-auto'>
+        <div className='lg:mt-[105px] mt-[20px] w-9/12 mx-auto text-[#c4c4c4]'>
           <div className='relative w-full h-[240px]' data-aos="fade-left">
             <div className='lg:flex hidden justify-center left-[46%]'>
               <img src='../static/road_map/left-white.svg' />
