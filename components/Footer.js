@@ -20,33 +20,43 @@ const Footer = () => {
       </Link>
       <ul className='gap-[30px] lg:flex items-center hidden'>
         <li>
-          <Link href='/' passHref>
-            <Image src={social5} className='cursor-pointer'>
-            </Image>
+          <Link href='https://www.youtube.com/channel/UCZ-dkwDXPIyppqvZWrShkjA' passHref>
+            <a target="_blank">
+              <Image src={social5} className='cursor-pointer'>
+              </Image>
+            </a>
           </Link>
         </li>
         <li>
-          <Link href='/' passHref>
-            <Image src={social1} className='cursor-pointer'>
-            </Image>
+          <Link href='https://github.com/Omniverse-DAO' passHref>
+            <a target="_blank">
+              <Image src={social1} className='cursor-pointer'>
+              </Image>
+            </a>
           </Link>
         </li>
         <li>
-          <Link href='/' passHref>
-            <Image src={social2} className='cursor-pointer'>
-            </Image>
+          <Link href='https://daniel-67.gitbook.io/omniverse-dao/' passHref>
+            <a target="_blank">
+              <Image src={social2} className='cursor-pointer'>
+              </Image>
+            </a>
           </Link>
         </li>
         <li>
-          <Link href='/' passHref>
-            <Image src={social3} className='cursor-pointer'>
-            </Image>
+          <Link href='https://discord.com/invite/omniversedao' passHref>
+            <a target="_blank">
+              <Image src={social3} className='cursor-pointer'>
+              </Image>
+            </a>
           </Link>
         </li>
         <li>
-          <Link href='/' passHref>
-            <Image src={social4} className='cursor-pointer'>
-            </Image>
+          <Link href='https://twitter.com/omniversedao' passHref>
+            <a target="_blank">
+              <Image src={social4} className='cursor-pointer'>
+             </Image>
+            </a>
           </Link>
         </li>
       </ul>

@@ -671,10 +671,10 @@ export default function Greg() {
             <select className='block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-[6px] leading-tight focus:outline-none focus:bg-white focus:border-gray-500' id='grid-state' value={toChain} onChange={(e) => setToChain(e.target.value)}>
               <option value='4'>Rinkeby</option>
               <option value='97'>Bscscan</option>
-              <option value='43113'>Snowtrace</option>
-              <option value='80001'>Polygonscan</option>
-              <option value='421611'>Arbiscan</option>
-              <option value='4002'>Ftmscan</option>
+              <option value='43113'>FUJI</option>
+              <option value='80001'>Mumbai</option>
+              <option value='421611'>Arbitrum</option>
+              <option value='4002'>Fantom</option>
               <option value='69'>Kovan</option>
             </select>
             <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
