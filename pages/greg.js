@@ -88,6 +88,7 @@ export default function Greg() {
   const [mintNum, setMintNum] = useState(1)
   const [toChain, setToChain] = useState('4')
   const [netId, setNetId] = useState('4')
+
   const [ownToken, setOwnToken] = useState([])
   const [transferNFT, setTransferNFT] = useState()
   const [totalNFTCount, setTotalNFTCount] = useState(0)
@@ -145,7 +146,9 @@ export default function Greg() {
 
   useEffect(() => {
     if(chainId!=undefined){
-      switchNetwork()
+      {
+          switchNetwork()
+      }
     }
   }, [netId])
 
@@ -167,7 +170,6 @@ export default function Greg() {
 
   const switchNetwork = async () => {
     const provider = window.ethereum
-
     if(chainId!=netId){
       try {
         await provider.request({
@@ -181,7 +183,6 @@ export default function Greg() {
         
         setTransferNFT()
         setIsSwitching(true)
-        
       } catch (addError) {
         setNetId(chainId)
         if(addError["code"]==4001){
