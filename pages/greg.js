@@ -87,7 +87,7 @@ export default function Greg() {
 
   const [mintNum, setMintNum] = useState(1)
   const [toChain, setToChain] = useState('4')
-  const [netId, setNetId] = useState()
+  const [netId, setNetId] = useState('4')
   const [ownToken, setOwnToken] = useState([])
   const [transferNFT, setTransferNFT] = useState()
   const [totalNFTCount, setTotalNFTCount] = useState(0)
@@ -96,6 +96,7 @@ export default function Greg() {
   const [estimateFee, setEstimateFee] = useState('')
   const [isMinting, setIsMinting] = useState(false)
   const [isTransferring, setIsTransferring] = useState(false)
+  const [isSwitching, setIsSwitching] = useState(false)
 
   const { library } = useActiveWeb3React()
 
@@ -143,26 +144,25 @@ export default function Greg() {
   }
 
   useEffect(() => {
-    if(active){
-      if(chainId==undefined){
-        setNetId('4')
-      } else{
-        if(chainId!=netId){
-          setNetId(chainId)
-          getInfo()
-        }
-      }
-    }
-  }, [chainId])
-
-  useEffect(() => {
-    if(netId!=undefined){
+    if(chainId!=undefined){
       switchNetwork()
     }
   }, [netId])
 
+  useEffect(()=>{
+    if(isSwitching==true){
+      if(account!=undefined){
+        getInfo()
+        setIsSwitching(false)
+      }
+    }
+  },[isSwitching,account])
+
   useEffect (()=>{
     Aos.init({ duration: 1000 })
+    if(chainId==undefined){
+      switchNetwork()
+    } 
   }, [])
 
   const switchNetwork = async () => {
@@ -178,7 +178,10 @@ export default function Greg() {
             }
           ]      
         })
+        
         setTransferNFT()
+        setIsSwitching(true)
+        
       } catch (addError) {
         setNetId(chainId)
         if(addError["code"]==4001){
@@ -187,7 +190,9 @@ export default function Greg() {
           errorToast('Switching network error, please try again')
         }
       }
-    } 
+    } else {
+      setIsSwitching(true)
+    }
   }
 
   const mint = async () => {
@@ -284,10 +289,11 @@ export default function Greg() {
   }
 
   const getInfo = async () => {
-    if(addresses[chainId]) {
+    if(addresses[netId]) 
+    {
       setOwnTokenisLoading(true)
       try{
-        const tokenContract = getContract(addresses[chainId].address, AdvancedONT.abi, library, account)
+        const tokenContract = getContract(addresses[netId].address, AdvancedONT.abi, library, account)
 
         let result = await tokenContract.balanceOf(account)
         let token, tokenlist = []
@@ -304,6 +310,7 @@ export default function Greg() {
         setTotalNFTCount(Number(max_mint))
         setNextTokenId(Number(nextId))
       } catch(error){
+        setNetId(chainId)
         errorToast('Getting NFT Error!!!, Please Check the Internet Connection!!!')
       }
       setOwnTokenisLoading(false)
