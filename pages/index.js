@@ -19,12 +19,15 @@ export default function Home() {
         <title>Omniverse DAO</title>
         <meta name="description" content="A homepage for Omniverse DAO" />
         <link rel="icon" href="/static/favicon.ico" />
+        
       </Head>
       <MainNav />
-      <embed src="/audio/background.m4a" loop="true" autostart="true" width="2" height="0"></embed>
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
+        <audio src="/static/audio/background.m4a" loop autoPlay />
+     
+
 
       <div
         data-aos="fade-up" data-aos-once="true"
