@@ -7,6 +7,7 @@ import Aos from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
 
+
 export default function Home() {
   useEffect(() => {
     Aos.init({ duration: 1000 })
@@ -20,12 +21,13 @@ export default function Home() {
         <link rel="icon" href="/static/favicon.ico" />
       </Head>
       <MainNav />
+      <embed src="/audio/background.m4a" loop="true" autostart="true" width="2" height="0"></embed>
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
 
       <div
-        data-aos="fade-up"
+        data-aos="fade-up" data-aos-once="true"
         className="flex h-screen w-full flex-col items-center justify-center"
       >
         <p className="m-0 text-[20px] leading-[23px]">ENTER THE</p>
@@ -42,7 +44,8 @@ export default function Home() {
       </div>
       <div className="w-full flex-col items-center pt-[150px]" id="overview">
         <div
-          data-aos="fade-right"
+          data-aos="fade-right"  
+          data-aos-once="true"
           className="m-auto flex w-full flex-col pb-20 lg:w-4/6 lg:flex-row"
         >
           <div className="raleway w-full px-4 py-0 lg:px-6 lg:py-10">
@@ -56,7 +59,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div  data-aos="fade-right" className="relative m-auto mb-20  h-[50px] w-[200px] sm:w-[500px]">
+        <div  data-aos="fade-right" data-aos-once="true" className="relative m-auto mb-20  h-[50px] w-[200px] sm:w-[500px]">
           <Image
             src="/static/separator.png"
             alt=""
@@ -66,7 +69,7 @@ export default function Home() {
           ></Image>
         </div>
         <div
-          data-aos="fade-left"
+          data-aos="fade-left" data-aos-once="true"
           className="m-auto flex w-full flex-col pb-20 lg:w-4/6 lg:flex-row"
         >
           <div className="raleway w-full px-4 py-0 lg:px-6 lg:py-10">
@@ -88,7 +91,7 @@ export default function Home() {
       </div>
       <div className="w-full flex-col items-center pt-[80px] lg:pt-[150px]">
         <div
-          data-aos="fade-right"
+          data-aos="fade-right" data-aos-once="true"
           className="m-auto flex w-full flex-col pb-20 lg:w-4/6 lg:flex-row lg:pb-[60px]"
         >
           <div className="flex w-full flex-col items-center px-10 py-5 lg:w-2/6 lg:items-end">
@@ -116,7 +119,7 @@ export default function Home() {
           </div>
         </div>
         <div
-          data-aos="fade-left"
+          data-aos="fade-left" data-aos-once="true"
           className="m-auto flex w-full flex-col pb-20 lg:w-4/6 lg:flex-row"
         >
           <div className="flex w-full flex-col items-center px-10 py-5 lg:w-2/6 lg:items-end">
@@ -145,13 +148,13 @@ export default function Home() {
       <div className="h-[200px]"></div>
       <div className="hidden flex-col items-center pb-[100px] uppercase xl:flex xl:pb-[220px]">
         <p
-          data-aos="fade-down"
+          data-aos="fade-down" data-aos-once="true"
           className="color m-0 text-center text-[25px] leading-[60px] text-white lg:text-[50px] lg:leading-[120px]"
         >
           ROADMAP
         </p>
         <div className="mx-auto mt-[20px] w-9/12 text-[#c4c4c4] lg:mt-[105px]">
-          <div className="relative h-[240px] w-full" data-aos="fade-left">
+          <div className="relative h-[240px] w-full" data-aos="fade-left" data-aos-once="true">
             <div className="left-[46%] hidden justify-center lg:flex">
               <img src="../static/road_map/left-white.svg" />
               <img src="../static/road_map/right-white.svg" />
@@ -180,7 +183,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div data-aos="fade-right" className="relative h-[240px] w-full">
+          <div data-aos="fade-right" data-aos-once="true" className="relative h-[240px] w-full">
             <div className="left-[46%] hidden justify-center lg:flex">
               <img src="../static/road_map/left-white.svg" />
               <img src="../static/road_map/right-white.svg" />
@@ -204,7 +207,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div data-aos="fade-left" className="relative h-[240px] w-full">
+          <div data-aos="fade-left" data-aos-once="true" className="relative h-[240px] w-full">
             <div className="left-[46%] hidden justify-center lg:flex">
               <img src="../static/road_map/left-grey.svg" />
               <img src="../static/road_map/right-grey.svg" />
@@ -227,7 +230,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div data-aos="fade-right" className="relative h-[240px] w-full">
+          <div data-aos="fade-right" data-aos-once="true" className="relative h-[240px] w-full">
             <div className="left-[46%] hidden justify-center lg:flex">
               <img src="../static/road_map/left-grey.svg" />
               <img src="../static/road_map/right-grey.svg" />
@@ -250,7 +253,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div data-aos="fade-left" className="relative h-[240px] w-full">
+          <div data-aos="fade-left" data-aos-once="true" className="relative h-[240px] w-full">
             <div className="left-[46%] hidden justify-center lg:flex">
               <img src="../static/road_map/left-grey.svg" />
               <img src="../static/road_map/right-grey.svg" />
@@ -274,7 +277,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div data-aos="fade-right" className="relative h-[240px] w-full">
+          <div data-aos="fade-right" data-aos-once="true" className="relative h-[240px] w-full">
             <div className="left-[46%] hidden justify-center lg:flex">
               <img src="../static/road_map/left-grey.svg" />
               <img src="../static/road_map/right-grey.svg" />
