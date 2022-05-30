@@ -1,0 +1,246 @@
+.heroContainer{
+  background: url(../static/home-hero-bg.png);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.heroContentWrap{
+  color: #fff;
+  font-family: 'Graphit';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+}
+.heroContentWrap h1{
+  font-size: 100px;
+  text-transform: uppercase;
+  letter-spacing: 24px;
+}
+.heroBtn{
+  margin-top: 32px;
+}
+.heroBtn button{
+  outline: none;
+  border: none;
+  background-color: #03121D;
+  font-family: 'Graphit';
+  font-size: 18px;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  border-radius: 28px;
+  letter-spacing: 7px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.heroBtn button:hover{
+   background-color: #051f30;
+   transition: 0.3s;
+}
+.blackGradientBottom2{
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 80%, #000 100%);
+}
+.navigationsWrap{
+  position: absolute;
+  right: 32px;
+  top: 40%;
+}
+.navigationsWrap ul{
+  list-style: none;
+}
+.navigationsWrap ul li a{
+  display: block;
+  height: 15px;
+  width: 15px;
+  border: 1px solid #02CAE5;
+  margin-bottom: 12px;
+  transition: 0.3s;
+}
+.navigationsWrap ul li a.active{
+  background-color: #02CAE5;
+}
+.navigationsWrap ul li a:hover{
+  background-color: #02CAE5;
+  transition: 0.3s;
+  cursor: pointer;
+}
+/* feature Content Area */
+.featureContentWrap{
+  color: #fff;
+  font-family: 'Graphit';
+  max-width: 1300px;
+  margin: 0px auto 100px auto;
+  position: relative;
+}
+.ContentWrap{
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 50px;
+}
+.contentBody {
+  max-width: 880px;
+  margin: 0px auto 100px auto;
+}
+.contentBody p{
+  margin-bottom: 24px;
+  font-size: 17px;
+  font-weight: 300;
+}
+.contentBody h3{
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+/* Heading Section*/
+.secHeadingCon{
+  color: #fff;
+  font-family: 'Graphit';
+}
+.secHeadingWrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 520px;
+  margin-bottom: 20px;
+}
+.secHeadingWrap h3{
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin: 0px 12px;
+}
+.secHeadImgL, .secHeadImgR{
+  width: 100%;
+  max-width: 150px;
+}
+.secHeadingCon{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.secHeadingCon h1{
+  font-size: 65px;
+  text-align: center;
+    font-size: 65px;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+}
+
+/* Partnars */
+.partCompGrid{
+  max-width: 1330px;
+  margin: 70px auto 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.PartCompWrap {
+  flex-basis: 23%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 24px;
+  margin-bottom: 50px;
+}
+
+/* Roadmap */
+.roadmapCon{
+  max-width: 1200px;
+  margin: 100px auto 100px auto;
+    color: #fff;
+  font-family: 'Graphit';
+}
+.roadmapWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ContL{
+  flex-basis: 50%;
+}
+.ContL h1{
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 5px;
+}
+.ContL .purpletxt{
+  color: #CB17C3;
+}
+.ContL .BgWrap{
+  position: relative;
+}
+.ContL .roadmapTxt{
+  position: absolute;
+  top: 43%;
+  left: 49%;
+  width: 100%;
+  max-width: 370px;
+  transform: translate(-43%, -49%);
+}
+.ContL .roadmapTxt h3{
+  color: #02CAE5;
+  font-weight: 300;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+.ContR{
+  flex-basis: 50%;
+  position: relative;
+}
+.roadlineImg{
+  padding-top: 150px;
+  max-width: 330px;
+}
+.roadlineBlue{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.alignLine{
+  width: 100%;
+  max-width: 330px;
+  padding-top: 150px;
+}
+.linehide{
+  opacity: 0;
+  transform: scale(0);
+}
+
+
+/* Home Page Background */
+.HomePageBg{
+  background: url(../static/homepage-bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.FooterAreaContain{
+  background: url(../static/footer-bg.png);
+  height: 150vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.FooterAreaContain footer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
