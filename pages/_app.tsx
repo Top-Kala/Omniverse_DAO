@@ -1,8 +1,13 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { useState, useEffect} from 'react'
+import { useState, useEffect, ComponentType} from 'react'
+import dynamic from 'next/dynamic'
+
+// const AppWithoutSSR:ComponentType<{}> = dynamic(() => import('./index'), {
+//   ssr: false,
+// })
 function MyApp({ Component, pageProps }: AppProps) {
-  const [showChild, setShowChild] = useState(false);
+  const [showChild, setShowChild] = useState<boolean>(false);
   useEffect(() => {
     setShowChild(true);
   }, []);
@@ -14,7 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     return <></>;
   } else {
     return (
+      // <AppWithoutSSR>
         <Component {...pageProps} />
+    // </AppWithoutSSR>
     );
   }
 }

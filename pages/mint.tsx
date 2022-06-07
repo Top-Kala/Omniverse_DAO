@@ -24,7 +24,6 @@ import Web3Modal from 'web3modal'
 import { BigNumber, ethers } from 'ethers'
 import React, { useState , useEffect } from 'react'
 import AdvancedONT from '../services/abis/AdvancedONT.json'
-import { AbiItem } from 'web3-utils'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Slide } from 'react-toastify'
@@ -248,6 +247,7 @@ const mint: NextPage = () => {
   const [init, setInitial] = useState<boolean>(false)
   const [isMinting,setIsMinting] = useState<boolean>(false)
   const [estimateFee, setEstimateFee] = useState<string>('')
+  const [mintable, setMintable] = useState<boolean>(false)
 
 	const connect = async():Promise<void> =>{
 		try {
@@ -369,6 +369,14 @@ const mint: NextPage = () => {
   
         setTotalNFTCount(Number(max_mint))
         setNextTokenId(Number(nextId))
+
+        let publicmintFlag = await tokenContract._publicSaleStarted()
+        let saleFlag = await tokenContract._saleStarted()
+        if(saleFlag==false && publicmintFlag==false){
+          setMintable(false)
+        } else {
+          setMintable(true)
+        }
       } catch(error){
         console.log(error)
       }
@@ -528,7 +536,6 @@ const mint: NextPage = () => {
 
   useEffect(()=>{
     if(chainId){
-      console.log("getInfo")
       getInfo()
     }
   },[chainId])
