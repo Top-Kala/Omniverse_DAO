@@ -36,7 +36,8 @@ interface Address {
   name: string,
   price: number,
   chainId: string,
-  unit: string
+  unit: string,
+  color: string
 } 
 
 interface contractInfo {
@@ -136,7 +137,6 @@ const providerOptions  = {
   },
 };
 
-
 const addresses:contractInfo = {
   '4': {
     address: '0xC8759D18D5c96cce77074249330b9b41A618e51A',
@@ -144,7 +144,8 @@ const addresses:contractInfo = {
     name: 'rinkeby',
     price: 0.05,
     chainId: '10001',
-    unit: 'ETH'
+    unit: 'ETH',
+    color:'#8C8C8C'
   },
   '97': {
     address: '0xCB3041291724B893E8BB3E876aC8f250D475685D',
@@ -152,7 +153,8 @@ const addresses:contractInfo = {
     name: 'bscscan',
     price: 0.375,
     chainId: '10002',
-    unit: 'BNB'
+    unit: 'BNB',
+    color:'#F3BA2F'
   },
   '43113': {
     address: '0xd88af13d0f204156BFad1680E1199EbEd0487A07',
@@ -160,7 +162,8 @@ const addresses:contractInfo = {
     name: 'FUJI',
     price: 2,
     chainId: '10006',
-    unit: 'AVAX'
+    unit: 'AVAX',
+    color:'#E84142'
   },
   '80001': {
     address: '0x864BA3671B20c2fD3Fe90788189e52Ef6D98fb65',
@@ -168,7 +171,8 @@ const addresses:contractInfo = {
     name: 'Mumbai',
     price: 108,
     chainId: '10009',
-    unit: 'MATIC'
+    unit: 'MATIC',
+    color:'#8247E5'
   },
   '421611': {
     address: '0x900501b343e8975b0ec4f1439f355f0bf15c7b9f',
@@ -176,7 +180,8 @@ const addresses:contractInfo = {
     name: 'Arbitrum',
     price: 0.05,
     chainId: '10010',
-    unit: 'ETH'
+    unit: 'ETH',
+    color:'#28A0F0'
   },
   '4002': {
     address: '0x484F40fC64D43fF7eECA7Ca51a801dB28A0F105d',
@@ -184,7 +189,8 @@ const addresses:contractInfo = {
     name: 'Fantom',
     price: 130,
     chainId: '10012',
-    unit: 'FTM'
+    unit: 'FTM',
+    color:'#13B5EC'
   },
   '69': {
     address: '0x5464Af1E4a6AF705920eD1CD0f4cb10638A89FD8',
@@ -192,7 +198,8 @@ const addresses:contractInfo = {
     name: 'Kovan',
     price: 0.05,
     chainId: '10011',
-    unit: 'ETH'
+    unit: 'ETH',
+    color:'#FF0320'
   }
 }
 const chainIds: Array<chains> = [
@@ -240,7 +247,8 @@ const mint: NextPage = () => {
   const [transferNFT, setTransferNFT] = useState<number>(0)
   const [init, setInitial] = useState<boolean>(false)
   const [isMinting,setIsMinting] = useState<boolean>(false)
-  
+  const [estimateFee, setEstimateFee] = useState<string>('')
+
 	const connect = async():Promise<void> =>{
 		try {
       let web3Modal: Web3Modal | null
@@ -491,6 +499,33 @@ const mint: NextPage = () => {
     }
   }, [provider]);
 
+  useEffect(() => {
+    const calculateFee = async():Promise<void> => {
+      try{
+        if(transferNFT){
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = provider.getSigner();
+          const tokenContract =  new ethers.Contract(addresses[`${Number(chainId).toString(10)}`].address, AdvancedONT.abi, signer)
+    
+          const fee:any = await tokenContract.estimateFeesSendNFT(addresses[toChain].chainId, transferNFT)
+          setEstimateFee("Estimate Fee :"+(Number(fee)/Math.pow(10,18)*1.1).toFixed(10)+addresses[chainId].unit)
+        } else {
+          setEstimateFee('')
+        }
+      } catch(error){
+        if(chainId == toChain){
+          errorToast(`${addresses[toChain].name} is currently unavailable for transfer`)
+        } else {
+          errorToast('Please Check the Internet Connection!!!')
+        }
+
+      }
+    }
+    calculateFee()
+    console.log("toChain", toChain)
+  },[toChain,transferNFT])
+
+
   useEffect(()=>{
     if(chainId){
       console.log("getInfo")
@@ -579,7 +614,7 @@ const mint: NextPage = () => {
             </div>
             <div className={selectstyles.nftselectWrap}>
                 <label>Select chain to mint on</label>
-                <div className={selectstyles.transSelWrap}>
+                <div className={selectstyles.transSelWrap} style={{"background":addresses[network].color}}>
                   <Image src={chainId?addresses[`${Number(network)}`].image:RinkbyImage} width={29.84} height={25.46} alt="ikon"></Image>
                   <select
                     onChange={(e) => {
@@ -612,9 +647,6 @@ const mint: NextPage = () => {
       </div>
       <div className={mintstyles.mintSecBg}>
         <div className={mintstyles.mintheadingImg}>
-            <div className={mintstyles.headImg}>
-              <Image src={HeadingImg} alt='mint head' layout='responsive'></Image>
-            </div>
             <h1>YOUR NFTS</h1>
           </div>
         <NFT
@@ -624,6 +656,7 @@ const mint: NextPage = () => {
           toChain={toChain}
           setToChain={setToChain}
           sendNFT={sendNFT}
+          estimateFee={estimateFee}
         />
         <Footer/>
       </div>

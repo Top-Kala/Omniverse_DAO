@@ -49,9 +49,10 @@
     /* background: linear-gradient(to bottom, transparent 50%, #000 100%); */
 }
 .navigationsWrap{
-  position: absolute;
+  position: fixed;
   right: 32px;
   top: 20%;
+  z-index: 999;
 }
 .navigationsWrap ul{
   list-style: none;
@@ -67,6 +68,7 @@
 .navigationsWrap ul li a.active{
   background-color: #02CAE5;
 }
+
 .navigationsWrap ul li a:hover{
   background-color: #02CAE5;
   transition: 0.3s;
