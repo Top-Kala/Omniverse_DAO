@@ -245,7 +245,6 @@ const Home: NextPage = () => {
               </div>
             </section>
 
-
             <div className={styles.roadmapCon}>
               {/* First Phase */}
               <div className={styles.roadmapWrap}>
@@ -265,12 +264,12 @@ const Home: NextPage = () => {
                   <div className={styles.roadlineImg}>
                     <Image src={RoadmapBlueLine} layout="responsive" alt="blueline"></Image>
                   </div>
-                  <div className={styles.planet}>
+                  {/* <div className={styles.planet}>
                     <Lottie
                       options={animationPlanetOptions}
                       isClickToPauseDisabled
                     />
-                  </div>
+                  </div> */}
                 </div>
               </div>
               {/* Second Phase */}
