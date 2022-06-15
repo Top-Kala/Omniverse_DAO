@@ -107,6 +107,7 @@ const Home: NextPage = () => {
       </Head>
       <Script src="//analytics.aweber.com/js/awt_analytics.js?id=X3co" />
       <div className={styles.body}>
+
         <div onWheel={(e) => {e?setWheel(e.pageY):null}}>
           {/* Hero Section */}
           <div className={styles.navigationsWrap}>
@@ -152,7 +153,7 @@ const Home: NextPage = () => {
                     </div>
                 </div>
               </section>
-              <section id="overview"  ref={overviewSection}>
+              <section id="overview" className={styles.overview} ref={overviewSection}>
                 <div className={styles.featureContentWrap}>
                   <div className={styles.featureImg}>
                     <Image src={FeatureContenImg} layout="responsive" alt="bg"></Image>
@@ -171,7 +172,15 @@ const Home: NextPage = () => {
                       With Omni X, we seek to change this. The first gaming DAO tool we are building is a multi-chain NFT marketplace framework. The Omni Wars game marketplace will be built on this framework, but we seek to open up this development to any other blockchain game looking to quickly bootstrap their own unique game specific NFT marketplace.
                       Built by the Omniverse DAO with an emphasis on superior user experience.</p>
                     </div>
+                    
                   </div>
+                  
+                </div>
+                <div className={styles.blueEarth}>
+                  <Lottie
+                    options={animationBlueEarthsOptions}
+                    isClickToPauseDisabled
+                  />
                 </div>
               </section>
               <div className={styles.animStar}>
@@ -183,12 +192,7 @@ const Home: NextPage = () => {
             </div>
           </div>
 
-          <div className={styles.blueEarth}>
-            <Lottie
-              options={animationBlueEarthsOptions}
-              isClickToPauseDisabled
-            />
-          </div>
+
           {/* Home Page BackGround */}
           <div className={styles.HomePageBg}>
             {/* Feature Section */}
@@ -228,7 +232,7 @@ const Home: NextPage = () => {
               />
             </div>
             {/* Roadmap Section */}
-            <section ref={roadmapSection} id="roadmap">
+            <section ref={roadmapSection} className={styles.roadmap} id="roadmap">
               <div className={styles.roadmapSecHead} >
                 <div className={styles.secHeadingCon}>
                   <div className={styles.secHeadingWrap}>
@@ -243,7 +247,14 @@ const Home: NextPage = () => {
                   <h1>RoadMap</h1>
                 </div>
               </div>
+              <div className={styles.animStarTwo}>
+                <Lottie
+                  options={animationStarsOptions}
+                  isClickToPauseDisabled
+                />
+              </div>
             </section>
+
 
             <div className={styles.roadmapCon}>
               {/* First Phase */}
@@ -264,12 +275,12 @@ const Home: NextPage = () => {
                   <div className={styles.roadlineImg}>
                     <Image src={RoadmapBlueLine} layout="responsive" alt="blueline"></Image>
                   </div>
-                  {/* <div className={styles.planet}>
+                  <div className={styles.planet}>
                     <Lottie
                       options={animationPlanetOptions}
                       isClickToPauseDisabled
                     />
-                  </div> */}
+                  </div>
                 </div>
               </div>
               {/* Second Phase */}

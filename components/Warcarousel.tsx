@@ -12,14 +12,14 @@ import { Navigation, EffectCoverflow } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
 // animations
-import * as starsanimation from "../services/animations/stars.json"
+import * as logo from "../services/animations/logo 1.json"
 import Lottie from 'react-lottie'
 
 import sliderstyles from '../styles/Slider.module.css'
-const animationStarsOptions = {
+const animationLogoOptions = {
   loop: true,
   autoplay: true,
-  animationData: starsanimation,
+  animationData: logo,
   rendererSettings: {
     preserveAspectRatio: "xMidYMid slice"
   }
@@ -40,17 +40,14 @@ const Warcarousel : React.FC = () => {
               <p>a competitive strategy game with blockchain based factions in a rich universe of lore, art, and community</p>
             </div>
             <div className={sliderstyles.slideLogo}>
-            <Image src={SlideLogo2} alt="slide logo"></Image>
+              <Lottie
+                options={animationLogoOptions}
+                isClickToPauseDisabled
+              />
             </div>
             <span className={`${sliderstyles.slidetag2} ${sliderstyles.slidetagwar}`}>Omni Wars</span>
           </div>
         </div>
-      </div>
-      <div className={sliderstyles.animStar}>
-        <Lottie
-          options={animationStarsOptions}
-          isClickToPauseDisabled
-        />
       </div>
     </div>
     </>
