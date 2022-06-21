@@ -10,13 +10,15 @@ interface Props{
   transferNFT:number,
   setTransferNFT:(transferNFT: number) => void,
   toChain:string,
+  chainName: string,
+  isTransferring: boolean,
   setToChain:(toChain: string) => void,
   sendNFT:()=>void,
   estimateFee:string
 }
 
 interface selectOptionColor {
-  color: string
+  color: string,
 } 
 
 interface selectOption {
@@ -118,7 +120,7 @@ const NFT : React.FC<Props> = (Props) => {
                     }}
                   >
                     <option value='4'>Rinkeby</option>
-                    <option value='97'>Bscscan</option>
+                    <option value='97'>BNB Chain</option>
                     <option value='43113'>FUJI</option>
                     <option value='80001'>Mumbai</option>
                     <option value='421611'>Arbitrum</option>
@@ -128,9 +130,14 @@ const NFT : React.FC<Props> = (Props) => {
                 </div>
                 <p>{Props.estimateFee}</p>  
                 <div className={nftstyles.transbtn}>
-                  <button onClick={()=>Props.sendNFT()}>TRANSFER</button>
+                  {
+                  Props.isTransferring?
+                    <button onClick={()=>Props.sendNFT()}><i  className="fa fa-spinner fa-spin" style={{"letterSpacing":"normal"}}/>TRANSFER</button>
+                    :
+                    <button onClick={()=>Props.sendNFT()}>TRANSFER</button>
+                  }
                 </div>
-                <p>Your item will show up in your wallet on Arbitrum. Unused gas will be refunded to your wallet.</p>
+                <p>Your item will show up in your wallet on {Props.chainName}. Unused gas will be refunded to your wallet.</p>
               </div>
             </div>
           </div>
