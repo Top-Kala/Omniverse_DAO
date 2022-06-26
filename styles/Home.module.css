@@ -5,7 +5,7 @@
 }
 .heroContainer{
   /* background: url('https://gateway.pinata.cloud/ipfs/QmciabGow14UT81EbssuSXjcUshR7hQ9486Yx7TV6zo7FE'); */
-  background: url(../services/animations/background.gif);
+  background: url(../services/animations//background.gif);
 
   height: 120vh;
   background-size: 170% 100%;
@@ -357,6 +357,7 @@
 .FooterAreaContain{
   /* background: url('https://gateway.pinata.cloud/ipfs/QmcdGtwF6pDqsErBG5vgfRNEe62U5fvvSkaRn5qam4LsyV'); */
   background: url(../services/animations/ice\ berg.gif);
+
   height: 120vh;
   background-size: 130% 100%;
   background-position: center;
@@ -381,39 +382,16 @@
 
 /* loading text css */
 .overviewTextSection {
-  color:#ffffff;
-  opacity:0;
+  /* display: none; */
 }
-.overviewTextSection span {
-  position:relative;
-  top:10px;
-  left:10px;
-  font-size:50px;
-  font-weight:600;
-  opacity:0;
-  text-transform:uppercase;
-  animation:fade 1000ms ease-in-out forwards;
+.loadingText {
+  animation-name: loadingTexts;
+  animation-duration: 2s;
 }
-@keyframes fade {
-  0% {
-    top:10px;
-    left:10px;
-    filter:blur(15px);
-    opacity:0;
-  }
-  50% {
-    filter:blur(10px);
-    opacity:0.9;
-  }
-  100% {
-    top:0px;
-    left:0px;
-    filter:blur(0px);
-    opacity:1;
-  }  
+@keyframes loadingTexts {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
-
-
 /* Media Queries */
 @media (max-width:1280px){
   .FooterAreaContain{

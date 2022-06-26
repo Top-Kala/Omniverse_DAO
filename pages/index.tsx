@@ -88,7 +88,6 @@ const Home: NextPage = () => {
 
   const [navbarid, setNavbarID] = useState<number>(0)
   const [wheel, setWheel] = useState<number>()
-  const [overviewcss, setOverViewClass] = useState<string>('')
   // const [starAnimation, setStarAnimation] = useState<Options>(animationStarsOptions)
 
   const omniverseSection = useRef<HTMLDivElement | null>(null)
@@ -112,10 +111,6 @@ const Home: NextPage = () => {
       }else {
         setNavbarID(4)
       }
-      if(wheel<Number(overviewTextSection.current?.offsetTop)){
-        setOverViewClass('styles.overviewTextSection')
-
-      }
     }
   },[wheel])
   return (
@@ -127,9 +122,6 @@ const Home: NextPage = () => {
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin="anonymous"/>
       </Head>
       <Script src="//analytics.aweber.com/js/awt_analytics.js?id=X3co" />
-      <Script type="text/javascript" src="/static/js/overviewTextSection.js"/>
-
-
       <div className={styles.body}>
 
         <div onWheel={(e) => {e?setWheel(e.pageY):null}}>
@@ -187,12 +179,10 @@ const Home: NextPage = () => {
               <div className={styles.featureImg}>
                 <Image src={FeatureContenImg} layout="responsive" alt="bg"></Image>
               </div>
-              <div className={styles.ContentWrap} ref={overviewTextSection} >
+              <div className={styles.ContentWrap}  >
                 <div className={styles.contentBody}>
                   <h3>OVERVIEW</h3>
-                  <div  id= "overviewTextSection" >
-                  {/* <div className={styles.overviewTextSection} id= "overviewTextSection" > */}
-
+                  <div className={styles.overviewTextSection}  ref={overviewTextSection}>
                     <p>The Omniverse is an ecosystem of media, tools, and protocols unified by their development and interoperability via Layer Zero technology.</p>
                     <p>Built by the Omniverse DAO with an emphasis on superior user experience.</p>
                   </div>
