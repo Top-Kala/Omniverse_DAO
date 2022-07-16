@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Omni X Interface
+
+Welcome to Omni X website!
 
 ## Getting Started
 
@@ -10,25 +12,20 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contract address
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Ethereum : https://etherscan.io/address/0x7FFE2672C100bFb0094ad0B4d592Dd9f9416f1AC
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Arbitrum : https://arbiscan.io/address/0x6c25c2c42928Ee8D65D2C3b0a29571BD4549A96B
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Polygon : https://polygonscan.com/address/0x54417f05c4D5E08B079bd671d0158Ff2854a4a88
 
-## Learn More
+Avalanche : https://snowtrace.io/address/0x018BB96D00309236E6D56046BBD8E9e083cC8CE9
 
-To learn more about Next.js, take a look at the following resources:
+BNB Chain: https://bscscan.com/address/0xc5F4f67442E688Bc4Da2d9D8a055374e642490a4
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Optimism: https://optimistic.etherscan.io/address/0xbb2e4B6e10FE9cCEBFDCa805cdCF9fA9fb65248F
 
-## Deploy on Vercel
+Fantom: https://ftmscan.com/address/0x165865de32bA3d9552FF814C2F283964c2B61a7D
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

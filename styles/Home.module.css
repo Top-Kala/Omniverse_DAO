@@ -4,11 +4,9 @@
   overflow:hidden;
 }
 .heroContainer{
-  /* background: url('https://gateway.pinata.cloud/ipfs/QmciabGow14UT81EbssuSXjcUshR7hQ9486Yx7TV6zo7FE'); */
-  background: url(../services/animations//background.gif);
-
-  height: 120vh;
-  background-size: 170% 100%;
+  background: url(../static/home-hero-bg.png);
+  height: 150vh;
+  background-size: 100% 100%;
   background-position: top;
   background-repeat: no-repeat;
   position: relative;
@@ -20,9 +18,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 70vh;
   flex-direction: column;
   padding-top: 70px;
+}
+.heroContentWrap .title{
+  font-size: 100px;
+  text-transform: uppercase;
+  letter-spacing: 24px;
 }
 .heroContentWrap h1{
   font-size: 100px;
@@ -30,13 +33,11 @@
   letter-spacing: 24px;
 }
 .heroContainerhidebar {
-  /* background-color: red;
   height: 10vh;
-
-  background: linear-gradient(359.85deg, rgba(0, 0, 0, 0) 0.07%, #000000 43.33%, rgba(0, 0, 0, 0) 84.59%); */
+  background: linear-gradient(359.85deg, rgba(0, 0, 0, 0) 0.07%, #000000 43.33%, rgba(0, 0, 0, 0) 84.59%);
 }
 .heroBtn{
-  margin-top: 24px;
+  margin-top: 6vh;
 }
 .heroBtn button{
   outline: none;
@@ -58,16 +59,15 @@
    transition: 0.3s;
 }
 .blackGradientBottom2{
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    /* background: linear-gradient(to bottom, transparent 50%, #000 100%); */
+  position:absolute;
+  top: 0;
+  width: 100%;
 }
 
 .navigationsWrap{
   position: fixed;
   right: 32px;
-  top: 30%;
+  top: 25%;
   z-index: 999;
 }
 .navigationsWrap ul{
@@ -98,7 +98,6 @@
   max-width: 1300px;
   margin: 0px auto 0px auto;
   position: relative;
-
 }
 .ContentWrap{
   position: absolute;
@@ -113,15 +112,16 @@
 }
 .contentBody {
   max-width: 880px;
-  margin: 0px auto 100px auto;
+  line-height: 23px;
+  /* margin: 0px auto 0px auto; */
 }
 .contentBody p{
-  margin-bottom: 24px;
-  font-size: 17px;
+  margin-bottom: 40px;
+  font-size: 18px;
   font-weight: 300;
 }
 .contentBody h3{
-  font-size: 22px;
+  font-size: 40px;
   font-weight: 300;
   margin-bottom: 16px;
   letter-spacing: 1px;
@@ -133,7 +133,8 @@
 }
 .animStarTwo{
   position: absolute;
-  top: -200px;
+  margin-bottom: 300px;
+  top: 0px;
   left: 0;
   width: 100%;
   transform: rotate(225deg);
@@ -178,12 +179,15 @@
 .overview {
   position: relative;
   /* background: url('https://gateway.pinata.cloud/ipfs/QmbSShYdmNWeCgtFdTcm436AjhLszFuoN34xt7oc1FHv1y');  */
-  background: url(../services/animations/2nd\ background.gif);
+  /* background: url(../services/animations/2nd\ background.gif); */
 
   background-size: 100% 100%;
   background-position: top;
   background-repeat: no-repeat;
+  
 }
+
+
 /* background for carosuels */
 .sliderRootContainer {
   /* background: url(../services/animations/2nd\ background.gif); */
@@ -206,9 +210,10 @@
   max-width: 520px;
   margin-bottom: 20px;
 }
-.secHeadingWrap h3{
-  font-weight: 300;
-  letter-spacing: 1px;
+.secHeadingWrap h2{
+  font-size: 80px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   margin: 0px 12px;
 }
 .secHeadImgL, .secHeadImgR{
@@ -222,7 +227,7 @@
   justify-content: center;
 }
 .secHeadingCon h1{
-  font-size: 65px;
+  font-size: 80px;
   text-align: center;
     font-size: 65px;
     letter-spacing: 12px;
@@ -345,21 +350,14 @@
 
 
 /* Home Page Background */
-.HomePageBg{
-  /* background: url(../static/Homebackground.png);
-  background-size: 100% 70%;
-  background-position: top;
-  background-repeat: no-repeat;
-  /* padding-top: 400px; */
-  /* margin-top: -400px; */
-}
+/* .HomePageBg{
+
+} */
 
 .FooterAreaContain{
-  /* background: url('https://gateway.pinata.cloud/ipfs/QmcdGtwF6pDqsErBG5vgfRNEe62U5fvvSkaRn5qam4LsyV'); */
-  background: url(../services/animations/ice\ berg.gif);
-
-  height: 120vh;
-  background-size: 130% 100%;
+  background: url(../static/footer-bg.png);
+  height: 100vh;
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
@@ -368,36 +366,81 @@
   flex-direction: column;
   width: 100%;
   z-index: -999;
+  margin-top: -20vh;
+  margin-bottom: -10vh;
 }
+
 .FooterAreaContain footer{
   width: 100%;
 }
 .hideBorder{
-  background-color: #000000;
+  background-color: #000104;
   height: 10px;
   width: 100%;
-  height: 7%;
-  background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.849) 100%);
+  height: 5%a;
+  background: linear-gradient(to top, transparent 0%, rgba(0, 1, 4, 0.849) 100%);
 }
 
-/* loading text css */
-.overviewTextSection {
-  /* display: none; */
+
+.charHead{
+  animation: animHead 0.3s ease-out 1 both;
+  display: inline-block;
 }
-.loadingText {
-  animation-name: loadingTexts;
-  animation-duration: 2s;
+.char{
+  animation: animText 0.1s ease-out 1 both;
+  display: inline-block;
 }
-@keyframes loadingTexts {
-  from {opacity: 0;}
-  to {opacity: 1;}
+.animImg{
+  animation: animImage 0.3s ease-out 1 both;
 }
+
+@keyframes animHead{
+  from{
+    opacity: 0;
+    font-size: 0px;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes animText{
+  from{
+    opacity: 0;
+    transform: perspective(500px) translate3d(-35px, -40px, -150px) rotate3d(1, -1, 0, 35deg);
+  }
+  to{
+      opacity: 1;
+      transform: perspective(500px) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes animImage{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
 /* Media Queries */
 @media (max-width:1280px){
+  .heroContentWrap{
+    min-height: 70vh;
+  }
+
+  .heroContainer{
+    height: 100vh;
+    background-size: 100% 100%;
+    background-position: top;
+  }
   .FooterAreaContain{
-    height: 110vh;
+    height: 100vh;
     background-size: 120% 100%;
     background-position: top;
+    margin-top: -20vh;
+    margin-bottom: -10vh;
   }
 }
 @media (max-width:1080px){
@@ -406,10 +449,15 @@
     background-size: 200% 100%;
     background-position: top;
   }
+  .heroContentWrap{
+    min-height: 70vh;
+  }
   .heroContentWrap h1{
     font-size: 70px;
     letter-spacing: 16px;
   }
+
+
   .featureContentWrap{
     background: url(../static/feature-content-bg-new.png);
     background-repeat: no-repeat;
@@ -419,6 +467,9 @@
     border-radius: 8px;
     margin: 0 12px;
     top: 0;
+    margin-top: -15vh;
+    z-index: 100;
+
   }
   .ContentWrap{
     padding-top: 32px !important;
@@ -448,43 +499,47 @@
   
   .FooterAreaContain{
     height: 90vh;
-    background-size: 110% 100%;
+    background-size: 160% 100%;
     background-position: top;
+    margin-top: -20vh;
+    margin-bottom: -10vh;
   }
 
 }
 
 @media (max-width:880px){
+  .navigationsWrap{
+    top: 22%;
+  }
+  .heroContentWrap{
+    min-height: 55vh;
+  }
+  .featureContentWrap{
+    margin-top: -20vh;
+    z-index: 100;
+  }
 .heroContentWrap h1{
     font-size: 60px;
     letter-spacing: 10px;
 }
 .heroContainer{
-  height: 80vh;
+  height: 100vh;
   background-size: 250% 100%;
-  /* background: url(../static/home-hero-bg.png); */
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
 }
-.heroContentWrap{
-  color: #fff;
-  font-family: 'Graphit';
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 50vh;
-  flex-direction: column;
-  padding-top: 0px;
-}
+
 .contentBody {
   max-width: 880px;
   margin: 0px auto 0px auto;
 }
   /* Section heading*/
   .secHeadingCon h1{
-    font-size: 40px;
-    letter-spacing: 7px;
+    font-size: 60px;
+    letter-spacing: 0.2em;
+  }
+  .secHeadingWrap h2{
+    font-size: 60px;
+    letter-spacing: 0.2em;
+    margin: 0px 12px;
   }
   /*Roadmap Section*/
   .ContR{
@@ -509,11 +564,7 @@
     max-height: 350px;
   }
   .animStarTwo{
-    position: absolute;
-    top: -170px;
-    left: 0;
-    width: 100%;
-    transform: rotate(225deg);
+    margin-bottom: 400px;
   }
   .HomePageBg{
     padding-top: 150px;
@@ -528,24 +579,45 @@
 
   .FooterAreaContain{
     height: 80vh;
-    background-size: 110% 100%;
+    background-size: 160% 100%;
     background-position: top;
+    margin-top: -15vh;
+    margin-bottom: -5vh;
   }
   
 }
 @media (max-width:780px){
+.heroContentWrap{
+  min-height: 55vh;
+}
+.featureContentWrap{
+  margin-top: -30vh;
+  z-index: 100;
+}
 .FooterAreaContain{
   height: 70vh;
-  background-size: 110% 100%;
+  background-size: 170% 100%;
   background-position: top;
+  margin-top: -15vh;
+  margin-bottom: -5vh;
 }
 
 }
 @media (max-width:680px){
+
+  .heroContentWrap{
+    min-height: 50vh;
+  }
+  .featureContentWrap{
+    margin-top: -40vh;
+    z-index: 100;
+  }
   .FooterAreaContain{
     height: 60vh;
-    background-size: 110% 100%;
+    background-size: 190% 100%;
     background-position: top;
+    margin-top: -15vh;
+    margin-bottom: -5vh;
   }
   .blueEarth {
     position: absolute;
@@ -554,11 +626,7 @@
     right: -7%;
   }
   .animStarTwo{
-    position: absolute;
-    top: -150px;
-    left: 0;
-    width: 100%;
-    transform: rotate(225deg);
+    margin-bottom: 400px;
   }
   .redPlanet {
     width: 66%;
@@ -569,6 +637,13 @@
 }
 
 @media (max-width:580px){
+  .heroContentWrap{
+    min-height: 50vh;
+  }
+  .featureContentWrap{
+    margin-top: -45vh;
+    z-index: 100;
+  }
   .heroContentWrap h1{
     font-size: 50px;
     letter-spacing: 10px;
@@ -615,7 +690,7 @@
   }
   .animStarTwo{
     position: absolute;
-    top: -130px;
+    top: 0px;
     left: 0;
     width: 100%;
     transform: rotate(225deg);
@@ -627,9 +702,21 @@
     transform: translateY(600px) rotate(45deg)  ;
   }
   .FooterAreaContain{
-    height: 50vh;
-    background-size: 110% 100%;
+    height: 60vh;
+    background-size: 200% 100%;
     background-position: top;
+    margin-top: -15vh;
+    margin-bottom: -5vh;
+  }
+  .secHeadingCon h1{
+    font-weight: 400;
+    letter-spacing: 0.2em;
+  }
+  .secHeadingWrap h2{
+    font-size: 50px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    margin: 0px 12px;
   }
 }
 
@@ -639,7 +726,7 @@
     margin-top: -200px;
   }
   .heroContainer{
-    height: 100vh;
+    height: 125vh;
     background-size: 300% 100%;
     background-position: top;
 
@@ -651,8 +738,15 @@
     letter-spacing: 5px;
   }
   .secHeadingCon h1{
-    font-size: 28px;
-    letter-spacing: 7px;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+  }
+  .secHeadingWrap h2{
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    margin: 0px 12px;
   }
   /* Omni X Carosules section */
   .secHeadImgL, .secHeadImgR{
@@ -721,7 +815,7 @@
   }
   .animStarTwo{
     position: absolute;
-    top: -100px;
+    top: 0px;
     left: 0;
     width: 100%;
     transform: rotate(225deg);
@@ -741,7 +835,7 @@
   .navigationsWrap{
     position: fixed;
     right: 4px;
-    top: 30%;
+    top: 25%;
     z-index: 999;
   }
   .navigationsWrap ul{
@@ -755,6 +849,9 @@
     margin-bottom: 15px;
     transition: 0.3s;
   }
+  .heroContentWrap{
+    min-height: 50vh;
+  }
   .featureContentWrap{
     background: url(../static/feature-mobile-bg.png);
     background-repeat: no-repeat;
@@ -764,11 +861,17 @@
     border-radius: 8px;
     margin: 0 12px;
     top: 0;
+    margin-top: -45vh;
+    z-index: 100;
   }
   .FooterAreaContain{
-    height: 50vh;
-    background-size: 110% 100%;
+    background: url(../static/footer-bg-mobile-new.png);
+
+    height: 80vh;
+    background-size: 100% 100%;
     background-position: top;
+    margin-top: 5vh;
+    margin-bottom: -15vh;
   }
   .body {
     background: url(../static/root-bg4.png);
